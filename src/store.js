@@ -1,22 +1,12 @@
-export const initialStore=()=>{
+export const initialStore=()=>{ // Almacena las variables
   return{
     message: null,
-    todos: [
-      {
-        id: 1,
-        title: "Make the bed",
-        background: null,
-      },
-      {
-        id: 2,
-        title: "Do my homework",
-        background: null,
-      }
-    ]
+    agendas: [],
+
   }
 }
 
-export default function storeReducer(store, action = {}) {
+export default function storeReducer(store, action = {}) { // acciones que modifican las variables
   switch(action.type){
     case 'add_task':
 
@@ -26,6 +16,12 @@ export default function storeReducer(store, action = {}) {
         ...store,
         todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
       };
+    case 'GET_AGENDAS': // nombre de la acción
+      return{
+        ...store,
+        agendas: action.payload, // guarda en agendas lo que trae del payload 
+      }  
+
     default:
       throw Error('Unknown action.');
   }    

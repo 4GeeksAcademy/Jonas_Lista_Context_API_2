@@ -1,94 +1,52 @@
+import React, { useEffect, useState } from "react";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
-import { useEffect, useState } from "react";
-import { obtenerAgendas } from "../services/fetch.js";
-
-
+import { crearAgenda, obtenerAgendas } from "../services/fetch.js"; // Importa la función crearAgenda
+import Agendas from "./Agendas.jsx";
 export const Home = () => {
   const { store, dispatch } = useGlobalReducer();
-  const { agendas } = store;
-
-
-  useEffect(() => {
-  obtenerAgendas(dispatch)
-    
-  }, [dispatch]);
-
-console.log(agendas)
- 
-
+  const [newAgendaSlug, setNewAgendaSlug] = useState(""); // Estado para el input del slug
+  const [loading, setLoading] = useState(false); // Estado para manejar la carga
+  const [error, setError] = useState(null); // Estado para manejar errores
+  const handleCreateAgenda = async () => {
+    if (!newAgendaSlug) {
+      alert("Por favor, ingresa un nombre para la agenda.");
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      await crearAgenda(newAgendaSlug, dispatch); // Crea la agenda
+      obtenerAgendas(dispatch); // Actualiza la lista de agendas
+      setNewAgendaSlug(""); // Limpia el input después de crear la agenda
+    } catch (error) {
+      setError("Error al crear la agenda. Inténtalo de nuevo.");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="text-center mt-5">
-      <h1>Lista de agendas</h1>
-      <div>
-        {agendas && agendas.length > 0 ? (
-          agendas.map((item, index) => (  // mapear agendar y mostrar en el navegador * * * sin slug
-            <pre key={index}>
-              {JSON.stringify(item, null, 2)}
-            </pre>
-          ))
-          ) : (
-            <p>No hay agendas disponibles</p>
-          )}
+      <h1>Hello Rigo!!</h1>
+      {/* Input para crear una nueva agenda */}
+      <div className="mb-4">
+        <input
+          type="text"
+          value={newAgendaSlug}
+          onChange={(e) => setNewAgendaSlug(e.target.value)}
+          placeholder="Nombre de la nueva agenda"
+          className="form-control w-50 mx-auto"
+        />
+        <button
+          onClick={handleCreateAgenda}
+          className="btn btn-primary mt-2"
+          disabled={loading}
+        >
+          {loading ? "Creando..." : "Crear Agenda"}
+        </button>
+        {error && <p className="text-danger mt-2">{error}</p>}
       </div>
-
-
+      {/* Componente Agendas */}
+      <Agendas />
     </div>
   );
 };
-
-
-// {
-//   agendas && agendas.map((item, index) => (  // mapear agenda y mostrar en el navegador * * * sin slug
-//     <div key={index} className="border p-3 my-2 rounded shadow">
-//       <p><strong>Nombre:</strong> {item.full_name}</p>
-//       <p><strong>Email:</strong> {item.email}</p>
-//       <p><strong>Teléfono:</strong> {item.phone}</p>
-//       <p><strong>Dirección:</strong> {item.address}</p>
-//     </div>
-//   ))
-// }
-
-
-
-
- // const getGetAgendas = async () => {
-  //   try {
-  //     const respuesta = await fetch(
-  //       "https://playground.4geeks.com/contact/agendas"
-  //     );
-  //     if (!respuesta.ok) {
-  //       throw new Error("Error al obtener los datos");
-  //     }
-  //     const datosApi = await respuesta.json(); // else ?? * *
-  //     setAgendas(datosApi);
-  //   } catch (err) {
-  //     console.error("Error al obtener los datos:", err);
-  //   }
-  // };
-
-  // const crearAgenda = async () => {
-  //   try {
-  //     const response = await fetch("https://playground.4geeks.com/contact/agendas/jonas2", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     console.log("Respuesta de la API:", response); // Depuración
-  //     if (!response.ok) {
-  //       const errorData = await response.json(); // Intenta obtener más detalles del error
-  //       console.error("Error al crear la agenda:", errorData); // Depuración
-  //       throw new Error(errorData.message || "Error al crear la agenda");
-  //     }
-  //     const data = await response.json();  // else ?? * *
-  //     console.log("Agenda creada:", data); // Depuración
-  //     // Despacha la acción para agregar la nueva agenda al estado
-  //     setAgendas(
-  //       data     
-  //     );
-  //     return data; // Devuelve la agenda creada
-  //   } catch (error) {
-  //     console.error("Error al crear la agenda, o ya existe :", error); // Depuración * * ¿cómo detecta su la agenda ya exite?
-  //     throw error; // Relanza el error para manejarlo en el componente
-  //   }
-  // }

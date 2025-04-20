@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
-import { crearAgenda, obtenerAgendas } from "../services/fetch.js"; // Importa la función crearAgenda
+import { crearAgenda, obtenerAgendas } from "../services/fetch.js"; 
 import Agendas from "./Agendas.jsx";
 export const Home = () => {
   const { store, dispatch } = useGlobalReducer();
@@ -25,10 +25,10 @@ export const Home = () => {
     }
   };
   return (
-    <div className="text-center mt-5">
-      <h1>Hello Rigo!!</h1>
+    <div className="home text-center mt-3 p-2">
+      <h1 className="p-2">Lista de Contactos</h1>
       {/* Input para crear una nueva agenda */}
-      <div className="mb-4">
+      <div>
         <input
           type="text"
           value={newAgendaSlug}
@@ -38,7 +38,7 @@ export const Home = () => {
         />
         <button
           onClick={handleCreateAgenda}
-          className="btn btn-primary mt-2"
+          className="btn-crear-agenda btn mt-2"
           disabled={loading}
         >
           {loading ? "Creando..." : "Crear Agenda"}

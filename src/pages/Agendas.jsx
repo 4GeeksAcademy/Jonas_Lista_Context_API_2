@@ -17,7 +17,7 @@ function Agendas() {
   const listaAgendas = agendas?.agendas || [];
   return (
     <div>
-      <h3>Agendas</h3>
+      <h3 className="mt-3 p-1">Agendas</h3>
       <div>
         <ul>
         {listaAgendas.length === 0 ? (
@@ -25,13 +25,13 @@ function Agendas() {
         ) : (
           <ul className="list-unstyled">
             {listaAgendas.map((agenda) => (
-              <li key={agenda.id} className="mb-4 p-3 border rounded shadow-sm">
+              <li key={agenda.id} className="row-agendas mb-4 p-3 border rounded shadow-sm">
                 <div className="text-start">
                   <Link
                     to={`/contactos/${agenda.slug}`}
                     className="text-decoration-none"
                   >
-                    <h3 className="mb-2 text-primary">{agenda.slug}</h3>
+                    <h3 className="agenda mb-2">{agenda.slug}</h3>
                   </Link>
                 </div>
               </li>

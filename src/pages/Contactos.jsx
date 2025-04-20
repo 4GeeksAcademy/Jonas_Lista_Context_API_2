@@ -60,9 +60,9 @@ function Contactos() {
     }
   };
   return (
-    <div className="container mt-5">
-      <div className="text-center">
-        <Link to={`/add-contact/${slug}`}><button className="btn btn-primary">Add contact</button></Link>
+    <div className="contact-body container mt-5">
+      <div className="text-center p-3">
+        <Link to={`/add-contact/${slug}`}><button className="add-contact-btn btn m-3">Add contact</button></Link>
         <h2 className="mb-4">Agenda de: {slug}</h2>
         {loadingAgenda ? (
           <p>Cargando agenda...</p> // Muestra un mensaje de carga mientras se obtiene la agenda
@@ -128,22 +128,22 @@ function Contactos() {
                         />
                         <button
                           onClick={() => handleSave(contact.id)}
-                          className="btn btn-success btn-sm me-2"
+                          className="btn save-btn btn-sm me-2"
                         >
-                          Guardar
+                          Save
                         </button>
                         <button
                           onClick={() => setEditingContact(null)}
                           className="btn btn-secondary btn-sm"
                         >
-                          Cancelar
+                          Cancel
                         </button>
                       </div>
                     )
                     :
                     (
                       // Detalles del contacto(el centro de la tarjeta)
-                      <div>
+                      <div className="contact-card">
                         <p className="mb-1">
                           <strong>Nombre:</strong> {contact.name}
                         </p>
@@ -158,18 +158,18 @@ function Contactos() {
                   </div>
                   {/* Botones de editar y eliminar */}
                   {editingContact !== contact.id && (
-                    <div className="bg-warning">
+                    <div>
                       <button
                         onClick={() => handleEdit(contact)}
-                        className="btn btn-primary btn-sm me-2"
+                        className="btn btn-secondary btn-sm me-2"
                       >
-                        Editar
+                        Edit
                       </button>
                       <button
                         onClick={() => handleDelete(contact.id)}
                         className="btn btn-danger btn-sm"
                       >
-                        Eliminar
+                        Remove
                       </button>
                     </div>
                   )}

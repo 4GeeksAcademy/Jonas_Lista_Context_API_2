@@ -1,0 +1,58 @@
+.html, body {
+    background-color: rgb(117, 172, 126);
+    height: 100%;
+    margin: 0;
+}
+
+.navbar {
+    background-color: rgb(117, 172, 126);
+}
+
+.home {
+    background-color: rgb(228, 230, 227);
+    color: rgb(106, 104, 126)
+}
+
+.home-btn, .btn-crear-agenda, .add-contact-btn, .btn-add, .save-btn {
+    background-color: rgb(67, 119, 76);
+    color: rgb(231, 231, 228);
+}
+
+.home-btn:hover, .btn-crear-agenda:hover, .add-contact-btn:hover, .btn-add:hover, .save-btn:hover {
+    background-color: rgb(51, 92, 58); 
+    color: rgb(231, 231, 228);
+}
+
+.row-agendas {
+    background-color: aliceblue;
+}
+.agenda {
+    color: rgb(67, 119, 76)
+}
+
+.contact-body{
+    background-color: rgb(231, 231, 228);
+    color: rgb(106, 104, 126)   
+}
+
+.contact-card {
+    color: rgb(67, 119, 76)
+}
+
+.footer {
+    background-color: rgb(117, 172, 126);
+    color: rgb(231, 231, 228)
+}
+
+.footer-link {
+    text-decoration: none;
+    color: rgb(51, 92, 58) ;
+}
+
+.footer-link:hover {
+    color: rgb(144, 241, 125);
+} 
+
+.add-contact-title {
+    color:  rgb(51, 92, 58);
+}

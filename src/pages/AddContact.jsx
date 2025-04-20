@@ -23,11 +23,12 @@ function AddContact({ contactToEdit }) {
     }
     navigate(`/contactos/${slug}`); // Redirige a la lista de contactos de la agenda
   };
+  
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-6">
-          <h1 className="text-center mb-4">
+          <h1 className="add-contact-title text-center mb-4">
             {contactToEdit ? "Editar Contacto" : "Agregar Contacto"}
           </h1>
           <form onSubmit={handleSubmit} className="card p-4 shadow-sm">
@@ -91,7 +92,7 @@ function AddContact({ contactToEdit }) {
                 }
               />
             </div>
-            <button type="submit" className="btn btn-primary w-100">
+            <button type="submit" className="btn btn-add w-100">
               {contactToEdit ? "Actualizar" : "Agregar"}
             </button>
           </form>

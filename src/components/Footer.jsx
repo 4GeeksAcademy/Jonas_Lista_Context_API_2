@@ -1,11 +1,11 @@
 export const Footer = () => (
 	<footer className="footer mt-auto py-3 text-center">
 		<p>
-			Check the <a target="_blank" href="https://4geeks.com/docs/start/start-react-advanced-project">template documentation</a> <i className="fa-solid fa-file"></i> for help.
+			Check the <a className="footer-link" target="_blank" href="https://github.com/4GeeksAcademy/Jonas_Lista_Context_API_2">repository</a> <i className="fa-solid fa-file"></i>
 		</p>
 		<p>
-			Made with <i className="fa fa-heart text-danger" /> by{" "}
-			<a href="http://www.4geeksacademy.com">4Geeks Academy</a>
+			Made by{" "}
+			<a className="footer-link" href="https://github.com/JonasTR-909" target="_blank">Jonas Velarde</a>
 		</p>
 	</footer>
 );
